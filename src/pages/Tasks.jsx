@@ -3,10 +3,12 @@ import MyTasks from "../components/tasks/MyTasks";
 import TaskCard from "../components/tasks/TaskCard";
 import { useState } from "react";
 import AddTaskModal from "../components/tasks/AddTaskModal";
+import { useSelector } from "react-redux";
 // import Modal from "../components/ui/Modal";
 
 const Tasks = () => {
   let [isOpen, setIsOpen] = useState(true);
+  const { tasks } = useSelector((state) => state.task);
 
   // function openModal() {
   //   setIsOpen(true);
@@ -32,9 +34,8 @@ const Tasks = () => {
               Add Task
             </button>
             <AddTaskModal isOpen={isOpen} setIsOpen={setIsOpen} />
-            {/* <Modal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
-
-            {/* <div className="fixed inset-0 flex items-center justify-center">
+            {/* <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+            <div className="fixed inset-0 flex items-center justify-center">
               <button
                 type="button"
                 onClick={openModal}
@@ -62,7 +63,9 @@ const Tasks = () => {
               </p>
             </div>
             <div className="space-y-3">
-              <TaskCard />
+              {tasks.map((task) => (
+                <TaskCard key={task.id} task={task} />
+              ))}
             </div>
           </div>
           <div className="relative h-[800px] overflow-auto">
@@ -73,8 +76,9 @@ const Tasks = () => {
               </p>
             </div>
             <div className="space-y-3">
-              <TaskCard />
-              <TaskCard />
+              {tasks.map((task) => (
+                <TaskCard key={task.id} task={task} />
+              ))}
             </div>
           </div>
           <div className="relative h-[800px] overflow-auto">
@@ -85,7 +89,9 @@ const Tasks = () => {
               </p>
             </div>
             <div className="space-y-3">
-              <TaskCard />
+              {tasks.map((task) => (
+                <TaskCard key={task.id} task={task} />
+              ))}
             </div>
           </div>
         </div>
